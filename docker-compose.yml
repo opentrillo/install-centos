@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+#  nginx:
+#    image: nginx:1.15-alpine
+#    restart: unless-stopped
+#    volumes:
+#      - ./data/nginx:/etc/nginx/conf.d
+#      - ./data/certbot/conf:/etc/letsencrypt
+#      - ./data/certbot/www:/var/www/certbot
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+#  certbot:
+#    image: certbot/certbot
+#    #restart: unless-stopped
+#    volumes:
+#      - ./data/certbot/conf:/etc/letsencrypt
+#      - ./data/certbot/www:/var/www/certbot
+#    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  # MySQL
+  mysqlhost:
+    image: mysql:5.7.20
+    restart: unless-stopped
+    environment:
+      # Note: any pre-existing database will always be left untouched on container
+      # Note: following credentials can be changed before running this script
+      MYSQL_ROOT_PASSWORD: 'trillo'
+      MYSQL_DATABASE: 'trillo'
+      MYSQL_USER: 'trillo'
+      MYSQL_PASSWORD: 'tri11pa$$$$'
+    volumes:
+      - ./trillo-mysql-datadir:/var/lib/mysql
+
+  # Data Service
+  trillo-data-service:
+    image: trillo/trillo-data-service:0.5.0-BUILD-SNAPSHOT_185
+    restart: unless-stopped
+    environment:
+      DEFAULT_DATA_SERVER_USERNAME: 'root'
+      #root password must match with MYSQL_ROOT_PASSWORD (above)
+      DEFAULT_DATA_SERVER_PASSWORD: 'trillo'
+    volumes:
+      - ./rt-repo:/trillo-repo
+    depends_on:
+      - mysqlhost
+
+  # RT Service
+  trillo-rt:
+    image: trillo/trillo-rt:1.0.0-BUILD-SNAPSHOT_417
+    restart: unless-stopped
+    ports:
+      - 443:8020
+    environment:
+      DATA_SERVICE_URL: 'https://trillo-data-service:8030'
+    volumes:
+      - ./rt-repo:/trillo-repo
+      - ./rt-appdata:/trillo-rt-appdata
+    depends_on:
+      - trillo-data-service
