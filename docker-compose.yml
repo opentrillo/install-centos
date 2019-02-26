@@ -52,7 +52,7 @@ services:
     image: trillo/trillo-rt:1.0.0-BUILD-SNAPSHOT_417
     restart: unless-stopped
     ports:
-      - 443:8020
+      - 8020:8020
     environment:
       DATA_SERVICE_URL: 'https://trillo-data-service:8030'
     volumes:
