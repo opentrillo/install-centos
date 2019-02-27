@@ -13,6 +13,10 @@ sudo systemctl start docker.service
 sudo yum -y install epel-release
 sudo yum -y install -y python-pip
 sudo pip install docker-compose
+sudo yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+sudo yum -y install python36u
+sudo yum -y install python36u-pip
+sudo yum -y install python36u-devel
 sudo yum -y upgrade python*
 
 sudo git clone https://github.com/opentrillo/install-centos.git /etc/trillo
