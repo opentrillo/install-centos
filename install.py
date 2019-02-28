@@ -56,6 +56,7 @@ def main():
     subprocess.call(["docker-compose", "down"])
     time.sleep(1)
     subprocess.call(["docker-compose", "-f", "docker-compose.yml", "up", "-d"])
+    print("Run this for logs: docker-compose logs -f")
   elif args.action == "update":
     _dict = {}
     for i in ["rt", "ds"]:
@@ -84,11 +85,13 @@ def main():
         ["docker", "login"])
     subprocess.call(
         ["docker-compose", "-f", "docker-compose-simple.yml", "up", "-d"])
+    print("Run this for logs: docker-compose logs -f")
 
   elif args.action == "start":
     subprocess.call(["docker-compose", "down"])
     time.sleep(1)
     subprocess.call(["docker-compose", "-f", "docker-compose.yml", "up", "-d"])
+    print("Run this for logs: docker-compose logs -f")
 
   elif args.action == "stop":
     subprocess.call(["docker-compose", "down"])
