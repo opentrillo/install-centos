@@ -7,13 +7,15 @@ import subprocess
 import argparse
 import time
 
+
 # trillo install script for AIO VM
 
 def main():
   parser = argparse.ArgumentParser(
       description='install certificates and start/stop/update containers')
   parser.add_argument(
-      'action', choices=['install-cert', 'start', 'stop', 'update'],
+      'action',
+      choices=['install-cert', 'start-simple', 'start', 'stop', 'update'],
       help='actions for certificate install and starting/stopping/updating '
            'containers')
   parser.add_argument(
@@ -25,8 +27,6 @@ def main():
       '--rt', required=False, help='trillo-rt version')
   parser.add_argument(
       '--ds', required=False, help='trillo-data-service version')
-  parser.add_argument(
-      '--simple', required=False, help='use docker-compose-simple')
   args = parser.parse_args()
 
   if args.action == "":
@@ -78,20 +78,17 @@ def main():
     time.sleep(1)
     subprocess.call(["docker-compose", "-f", "docker-compose.yml", "up", "-d"])
 
+  elif args.action == "start-simple":
+    subprocess.call(["docker-compose", "down"])
+    subprocess.call(
+        ["docker", "login"])
+    subprocess.call(
+        ["docker-compose", "-f", "docker-compose-simple.yml", "up", "-d"])
+
   elif args.action == "start":
-    _simple = False
-    if getattr(args, "simple") is not None:
-      _simple = True
-    if _simple:
-      subprocess.call(["docker-compose", "down"])
-      subprocess.call(
-          ["docker", "login"])
-      subprocess.call(
-          ["docker-compose", "-f", "docker-compose-simple.yml", "up", "-d"])
-    else:
-      subprocess.call(["docker-compose", "down"])
-      time.sleep(1)
-      subprocess.call(["docker-compose", "-f", "docker-compose.yml", "up", "-d"])
+    subprocess.call(["docker-compose", "down"])
+    time.sleep(1)
+    subprocess.call(["docker-compose", "-f", "docker-compose.yml", "up", "-d"])
 
   elif args.action == "stop":
     subprocess.call(["docker-compose", "down"])
