@@ -1,4 +1,4 @@
-# Installation of Trillo Services with Nginx and Let’s Encrypt
+# Installation of Trillo Runtime with Nginx and Let’s Encrypt
 
 Before running any command make sure to "sudo su -":
 
