@@ -7,6 +7,7 @@ import subprocess
 import argparse
 import time
 
+# trillo install script for AIO VM
 
 def main():
   parser = argparse.ArgumentParser(
