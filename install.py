@@ -75,23 +75,27 @@ def main():
       else:
         print(line, end='')
 
-    subprocess.call(["docker-compose", "down"])
-    time.sleep(1)
-    subprocess.call(["docker-compose", "-f", "docker-compose.yml", "up", "-d"])
-
+    for line in fileinput.input(['docker-compose-simple.yml'], inplace=True):
+      if 'trillo/trillo-rt' in line:
+        print(r.sub("_%s" % _dict['rt'], line), end='')
+      elif 'trillo/trillo-data-service' in line:
+        print(r.sub("_%s" % _dict['ds'], line), end='')
+      else:
+        print(line, end='')
+    print(
+      "All compose files are updated. "
+      "Next, please use either start or start-simple")
   elif args.action == "start-simple":
     subprocess.call(["docker-compose", "down"])
     subprocess.call(
-        ["docker", "login"])
-    subprocess.call(
         ["docker-compose", "-f", "docker-compose-simple.yml", "up", "-d"])
-    print("Run this for logs: docker-compose logs -f")
+    print("For logs: docker-compose logs -f")
 
   elif args.action == "start":
     subprocess.call(["docker-compose", "down"])
     time.sleep(1)
     subprocess.call(["docker-compose", "-f", "docker-compose.yml", "up", "-d"])
-    print("Run this for logs: docker-compose logs -f")
+    print("For logs: docker-compose logs -f")
 
   elif args.action == "stop":
     subprocess.call(["docker-compose", "down"])
