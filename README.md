@@ -1,6 +1,10 @@
 # Installation of Trillo Runtime with Nginx and Let’s Encrypt
 
-Before running any command make sure to "sudo su -":
+Before running any command make sure to "sudo su -". Also suggest
+creating /etc/trillo for the following installation.
+
+## Video Instructions
+![](https://youtu.be/SRDPjArL1-k)
 
 ## Start Runtime
 - ./install.py start-simple
