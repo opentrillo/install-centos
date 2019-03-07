@@ -4,7 +4,7 @@ Before running any command make sure to "sudo su -". Also suggest
 creating /etc/trillo for the following installation.
 
 ## Video Instructions
-![](https://youtu.be/SRDPjArL1-k)
+[YouTube Link](https://youtu.be/SRDPjArL1-k)
 
 ## Start Runtime
 - ./install.py start-simple
