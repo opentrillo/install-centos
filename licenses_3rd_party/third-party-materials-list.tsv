@@ -10,6 +10,7 @@ Apache Lucene	https://github.com/apache/lucene-solr/blob/master/lucene/LICENSE.t
 Jackson Json	https://github.com/FasterXML/jackson-core/blob/master/src/main/resources/META-INF/LICENSE	Apache License 2		No	No
 MVEL	https://github.com/mvel/mvel/blob/master/LICENSE.txt	Apache License 2		No	No
 Java-Faker	https://github.com/DiUS/java-faker/blob/master/LICENSE	Apache License 2		No	No
+Caffeine	https://github.com/ben-manes/caffeine/blob/master/LICENSE	Apache License 2		Yes	No
 Simple Java Mail	https://github.com/bbottema/simple-java-mail/blob/develop/LICENSE-2.0.txt	Apache License 2		No	No
 hibernate-jpa-2.1-api	https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api	EPL 1.0	hibernate-jpa-2.1-api-1.0.0.Final.jar	Yes	No
 MariaDB Driver	https://github.com/MariaDB/mariadb-connector-j/blob/master/LICENSE	LGPL		Yes	No
