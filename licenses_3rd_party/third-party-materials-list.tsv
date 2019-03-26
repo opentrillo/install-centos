@@ -47,3 +47,6 @@ typeahead  (npm install)	https://www.npmjs.com/package/typeahead.js	none		Yes	No
 bootstrap  (npm install)	https://www.npmjs.com/package/bootstrap	MIT		Yes	No
 jquery  (npm install)	https://www.npmjs.com/package/jquery	MIT		Yes	No
 class  (npm install)	https://www.npmjs.com/package/class	none		Yes	No
+redis	https://redis.io	3-BSD		Yes	No
+redisson https://github.com/redisson/redisson Apache Yes No
+
