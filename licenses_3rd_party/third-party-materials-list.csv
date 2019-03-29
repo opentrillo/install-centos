@@ -1,0 +1,55 @@
+"Please list every single external library and binary that is incorporated into the image, including all direct and transitive dependencies of any software included on the image. You may omit packages that are part of the standard base image
+or which are fetchable and unmodified with pkg, npm, apt, yum, or Cabal. You must list any packages that are fetched using Maven.",,,,,
+,,,,,
+External Library Name,"Link to License (actual project license, not example of license)",License Name,"The names of all binaries that link the external library (only needs to be completed if thia library is CDDL, EPL, GPL, LGPL, or MPL licensed)",Copyright notice and license text for library inlcuded in third-party notices being surfaced on the image?,Source code for library included the mirrored source included on the image?
+,,,,,
+spring-boot suite,https://github.com/spring-projects/spring-boot/blob/master/LICENSE.txt,Apache License 2,,Yes,No
+spring-cloud suite,https://github.com/spring-cloud/spring-cloud-release/blob/master/LICENSE.txt,Apache License 2,,Yes,No
+Apache commons suite,https://github.com/apache/commons-lang/blob/master/LICENSE.txt,Apache License 2,,Yes,No
+SpringFox,https://github.com/springfox/springfox/blob/master/LICENSE,Apache License 2,,Yes,No
+javax.mail,https://javaee.github.io/javamail/JavaMail-License,CDDL,javax.mail.jar,Yes,No
+Apache Lucene,https://github.com/apache/lucene-solr/blob/master/lucene/LICENSE.txt,Apache License 2,,Yes,No
+Jackson Json,https://github.com/FasterXML/jackson-core/blob/master/src/main/resources/META-INF/LICENSE,Apache License 2,,Yes,No
+MVEL,https://github.com/mvel/mvel/blob/master/LICENSE.txt,Apache License 2,,Yes,No
+Java-Faker,https://github.com/DiUS/java-faker/blob/master/LICENSE,Apache License 2,,Yes,No
+Simple Java Mail,https://github.com/bbottema/simple-java-mail/blob/develop/LICENSE-2.0.txt,Apache License 2,,Yes,No
+hibernate-jpa-2.1-api,https://github.com/hibernate/hibernate-jpa-api/blob/master/license.txt,EPL 1.0,hibernate-jpa-2.1-api-1.0.0.Final.jar,Yes,No
+MariaDB Driver,https://github.com/MariaDB/mariadb-connector-j/blob/master/LICENSE,LGPL,,Yes,No
+JWT Web tokens,https://github.com/jwtk/jjwt/blob/master/LICENSE,Apache License 2,,Yes,No
+C3P0,https://github.com/swaldman/c3p0/blob/master/src/dist-static/LICENSE-LGPL,LGPL,c3p0-0.9.1.2.jar,Yes,No
+Apache MetaModel,https://github.com/apache/metamodel/blob/master/LICENSE,Apache License 2,,Yes,No
+Postgres Driver,https://www.postgresql.org/about/licence/,MIT,,Yes,No
+Mongo Java Driver,https://github.com/mongodb/mongo-java-driver/blob/master/LICENSE.txt,Apache License 2,,Yes,No
+Caffeine,https://github.com/ben-manes/caffeine/blob/master/LICENSE,Apache License 2,,Yes,No
+spring-mvc-cache-control,https://raw.githubusercontent.com/foo4u/spring-mvc-cache-control/master/LICENSE,Apache License 2,,Yes,No
+problem-spring-web,https://github.com/zalando/problem-spring-web/blob/master/LICENSE,MIT,,Yes,No
+nouislider (npm install),https://www.npmjs.com/package/nouislider,MIT,,Yes,No
+jquery-autocomplete  (npm install),https://www.npmjs.com/package/jquery-autocomplete,MIT,,Yes,No
+fontawesome-free,https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt,MIT/SIL-OFL/CC-by-4.0,,Yes,No
+flatpickr  (npm install),https://www.npmjs.com/package/flatpickr,MIT,,Yes,No
+jQuery-Form-Validator  (npm install),https://www.npmjs.com/package/jquery-form-validator,MIT,,Yes,No
+popper  (npm install),https://www.npmjs.com/package/popper,MIT,,Yes,No
+jQuery-history  (npm install),https://github.com/balupton/jquery-history/blob/master/LICENSE.txt,MIT,,Yes,No
+autosize  (npm install),https://www.npmjs.com/package/autosize,MIT,,Yes,No
+Masked Input Plugin for jQuery  (npm install),https://www.npmjs.com/package/jquery.maskedinput,MIT,,Yes,No
+jQuery  (npm install),https://www.npmjs.com/package/jquery,MIT,,Yes,No
+sockjs  (npm install),https://www.npmjs.com/package/sockjs,MIT,,Yes,No
+perfect-scrollbar  (npm install),https://www.npmjs.com/package/perfect-scrollbar,MIT,,Yes,No
+moment  (npm install),https://www.npmjs.com/package/moment,MIT,,Yes,No
+purl  (npm install),https://www.npmjs.com/package/purl,BSD-3-Clause,,Yes,No
+socketio  (npm install),https://www.npmjs.com/package/socketio,ISC,,Yes,No
+jszip  (npm install),https://www.npmjs.com/package/jszip,MIT,,Yes,No
+c3  (npm install),https://www.npmjs.com/package/c3,MIT,,Yes,No
+datatables-buttons  (npm install),https://www.npmjs.com/package/datatables-buttons,MIT,,Yes,No
+jquery-mask  (npm install),https://www.npmjs.com/package/jquery-mask-plugin,MIT,,Yes,No
+tether  (npm install),https://www.npmjs.com/package/tether,MIT,,Yes,No
+bootstrap-hover-dropdown  (npm install),https://www.npmjs.com/package/bootstrap-hover-dropdown,MIT,,Yes,No
+chartjs  (npm install),https://www.npmjs.com/package/chartjs,MIT,,Yes,No
+jquery-validation  (npm install),https://www.npmjs.com/package/jquery-validation,MIT,,Yes,No
+d3  (npm install),https://www.npmjs.com/package/d3,BSD-3-Clause,,Yes,No
+mustache  (npm install),https://www.npmjs.com/package/mustache,MIT,,Yes,No
+stomp  (npm install),https://www.npmjs.com/package/stomp,MIT,,Yes,No
+typeahead  (npm install),https://github.com/twitter/typeahead.js/blob/master/LICENSE,MIT,,Yes,No
+bootstrap  (npm install),https://www.npmjs.com/package/bootstrap,MIT,,Yes,No
+jquery  (npm install),https://www.npmjs.com/package/jquery,MIT,,Yes,No
+class  (npm install),https://github.com/deadlyicon/class.js,MIT,,Yes,No
