@@ -1,10 +1,9 @@
 #! /usr/local/bin/python3
 
+import argparse
 import fileinput
 import re
 import subprocess
-
-import argparse
 import time
 
 
