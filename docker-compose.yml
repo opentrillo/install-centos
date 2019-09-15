@@ -33,6 +33,8 @@ services:
       MYSQL_PASSWORD: 'tri11pa$$$$'
     volumes:
       - ./trillo-mysql-datadir:/var/lib/mysql
+    ports:
+      - 3306:3306
 
   trillo-redis:
     image: redis
@@ -40,6 +42,8 @@ services:
     command: redis-server --requirepass tri_redbull --appendonly yes
     volumes:
       - ./rt-appdata:/data
+    ports:
+      - 6379:6379
 
   # Data Service
   trillo-data-service:
