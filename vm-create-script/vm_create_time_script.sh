@@ -20,4 +20,4 @@ sudo yum -y install python36u-devel
 sudo yum -y upgrade python*
 sudo ln -s /bin/python3.6 /usr/local/bin/python3
 
-sudo git clone https://github.com/opentrillo/install-centos.git /etc/trillo
+sudo git clone https://github.com/opentrillo/install-centos.git /opt/trillo
