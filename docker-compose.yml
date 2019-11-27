@@ -47,7 +47,9 @@ services:
 
   # Data Service
   trillo-data-service:
-    image: trillo/trillo-data-service:0.5.0-BUILD-SNAPSHOT_199
+    #logging:
+    #  driver: gcplogs
+    image: trillo/trillo-data-service:develop_latest
     restart: unless-stopped
     environment:
       DEFAULT_DATA_SERVER_USERNAME: 'root'
@@ -60,7 +62,9 @@ services:
 
   # RT Service
   trillo-rt:
-    image: trillo/trillo-rt:1.0.0-BUILD-SNAPSHOT_437
+    #logging:
+    #  driver: gcplogs
+    image: trillo/trillo-rt:develop_latest
     restart: unless-stopped
     ports:
       - 8020:8020

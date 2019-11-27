@@ -1,4 +1,4 @@
-#! /usr/local/bin/python3
+#! /usr/bin/python3
 
 import argparse
 import fileinput
@@ -82,8 +82,8 @@ def main():
       else:
         print(line, end='')
     print(
-      "All compose files are updated. "
-      "Next, please use either start or start-simple")
+        "All compose files are updated. "
+        "Next, please use either start or start-simple")
   elif args.action == "start-simple":
     subprocess.call(["docker-compose", "down"])
     subprocess.call(
