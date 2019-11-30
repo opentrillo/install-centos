@@ -72,7 +72,7 @@ services:
     image: trillo/trillo-rt:develop_latest
     restart: unless-stopped
     ports:
-      - 8020:8020
+      - 443:8020
     environment:
       DATA_SERVICE_URL: 'https://trillo-data-service:8030'
       REDIS_CREDENTIALS: ${REDIS_PASSWORD}
