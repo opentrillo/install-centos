@@ -1,38 +1,42 @@
 version: '3'
 
 services:
-
   # MySQL
   mysqlhost:
+    logging:
+      driver: gcplogs
     image: mysql:5.7.20
     restart: unless-stopped
     environment:
-      # Note: any pre-existing database will always be left untouched on container
-      # Note: following credentials can be changed before running this script
-      MYSQL_ROOT_PASSWORD: 'trillo'
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: 'trillo'
       MYSQL_USER: 'trillo'
-      MYSQL_PASSWORD: 'tri11pa$$$$'
+      MYSQL_PASSWORD: ${DB_USER_PASSWORD}
     volumes:
       - ./trillo-mysql-datadir:/var/lib/mysql
+    ports:
+      - 3306:3306
 
   trillo-redis:
+    logging:
+      driver: gcplogs
     image: redis
     restart: unless-stopped
-    command: redis-server --requirepass tri_redbull --appendonly yes
+    command: redis-server --requirepass ${REDIS_PASSWORD} --appendonly yes
     volumes:
       - ./rt-appdata:/data
+    ports:
+      - 6379:6379
 
   # Data Service
   trillo-data-service:
-    #logging:
-    #  driver: gcplogs
+    logging:
+      driver: gcplogs
     image: trillo/trillo-data-service:develop_latest
     restart: unless-stopped
     environment:
       DEFAULT_DATA_SERVER_USERNAME: 'root'
-      #root password must match with MYSQL_ROOT_PASSWORD (above)
-      DEFAULT_DATA_SERVER_PASSWORD: 'trillo'
+      DEFAULT_DATA_SERVER_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./rt-repo:/trillo-repo
     depends_on:
@@ -40,14 +44,15 @@ services:
 
   # RT Service
   trillo-rt:
-    #logging:
-    #  driver: gcplogs
+    logging:
+      driver: gcplogs
     image: trillo/trillo-rt:develop_latest
     restart: unless-stopped
     ports:
-      - 443:8020
+      - 8020:8020
     environment:
       DATA_SERVICE_URL: 'https://trillo-data-service:8030'
+      REDIS_CREDENTIALS: ${REDIS_PASSWORD}
     volumes:
       - ./rt-repo:/trillo-repo
       - ./rt-appdata:/trillo-rt-appdata
