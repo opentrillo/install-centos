@@ -24,60 +24,60 @@ services:
       - ./data/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
-  # MySQL
-  mysqlhost:
-    logging:
-      driver: gcplogs
-    image: mysql:5.7.20
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: 'trillo'
-      MYSQL_USER: 'trillo'
-      MYSQL_PASSWORD: ${DB_USER_PASSWORD}
-    volumes:
-      - ./trillo-mysql-datadir:/var/lib/mysql
-    ports:
-      - 3306:3306
-
-  trillo-redis:
-    logging:
-      driver: gcplogs
-    image: redis
-    restart: unless-stopped
-    command: redis-server --requirepass ${REDIS_PASSWORD} --appendonly yes
-    volumes:
-      - ./rt-appdata:/data
-    ports:
-      - 6379:6379
-
-  # Data Service
   trillo-data-service:
     logging:
       driver: gcplogs
-    image: trillo/trillo-data-service:develop_latest
+    image: gcr.io/project-trillort/trillo-rt/trillo-data-service:3.0.296
     restart: unless-stopped
     environment:
-      DEFAULT_DATA_SERVER_USERNAME: 'root'
-      DEFAULT_DATA_SERVER_PASSWORD: ${DB_PASSWORD}
+      DEFAULT_DATA_SERVER_HOST: __sql_server__
+      DEFAULT_DATA_SERVER_USERNAME: root
+      DEFAULT_DATA_SERVER_PASSWORD: __db_secret__
+      REPO_DIR: /trillo-repo
+      CREDENTIALS_PROVIDER: CRYPTO_SHA512
     volumes:
       - ./rt-repo:/trillo-repo
-    depends_on:
-      - mysqlhost
 
-  # RT Service
+  trillo-pubsub:
+    logging:
+      driver: gcplogs
+    image: gcr.io/project-trillort/trillo-gke-tasker:3.0.273
+    restart: unless-stopped
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /var/secrets/google/key.json
+      CONFIG_JSON: /var/pubsub/config.json
+    volumes:
+      - ./secrets:/var/secrets:ro
+      - ./pubsub:/var/pubsub:ro
+
   trillo-rt:
     logging:
       driver: gcplogs
-    image: trillo/trillo-rt:develop_latest
+    image: gcr.io/project-trillort/trillo-rt:3.0.296
     restart: unless-stopped
     ports:
-      - 443:8020
+      - 8020:8020
     environment:
       DATA_SERVICE_URL: 'https://trillo-data-service:8030'
-      REDIS_CREDENTIALS: ${REDIS_PASSWORD}
+      TRILLO_PACKAGED_ORG_NAME: cloud
+      CREDENTIALS_PROVIDER: CRYPTO_SHA512
+      GOOGLE_APPLICATION_CREDENTIALS: /var/secrets/google/key.json
+      GCP_BUCKET_NAME: __gcp_bucket_name__
+      GCP_SERVICE_NAME: _default_
+      GCS_FILE_SERVER: __gcs_file_server__
+      GCS_FILE_SERVER_USER: root
+      RSA_PRIVATE_KEY: /var/secrets/ssh/trillo-ssh
+      DEFAULT_DATA_SERVER_HOST: __sql_server__
+      DEFAULT_DATA_SERVER_USERNAME: root
+      DEFAULT_DATA_SERVER_PASSWORD: __db_secret__
+      QUARTZ_ENABLED: 'true'
+      MAIL_REFERENCE_SERVER: https://__server_fqdn_name__
+      REPO_DIR: /trillo-repo
+      APPDATA_DIR: /trillo-rt-appdata
+      TRILLO_USE_REDIS: 'false'
     volumes:
       - ./rt-repo:/trillo-repo
       - ./rt-appdata:/trillo-rt-appdata
+      - ./secrets:/var/secrets:ro
     depends_on:
       - trillo-data-service

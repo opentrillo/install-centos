@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cd /opt/trillo
+./install.py > /opt/trillo/install.log 2>&1
+cat /opt/trillo/install.log
+
+
